@@ -1,13 +1,29 @@
-# Sample Hardhat Project
+# Slither Demo with Hardhat
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a Hardhat Ignition module that deploys that contract.
+This is a demo project showcasing how to integrate [Slither](https://github.com/crytic/slither) — a static analysis tool for Solidity — into a Hardhat-based development environment.
 
-Try running some of the following tasks:
+It builds upon the default Hardhat sample project and includes:
 
-```shell
+- A sample smart contract
+- A unit test for the contract
+- A Hardhat Ignition module for deployment
+- A GitHub Actions workflow to run Slither on each push or pull request
+
+## Getting Started
+
+You can try running some of the following tasks:
+
+```bash
 npx hardhat help
 npx hardhat test
 REPORT_GAS=true npx hardhat test
 npx hardhat node
 npx hardhat ignition deploy ./ignition/modules/Lock.js
+```
+
+## Static Analysis
+
+To run Slither manually:
+```bash
+slither .
 ```
