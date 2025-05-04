@@ -1,0 +1,34 @@
+name: Slither Analysis
+
+on:
+  push:
+    paths:
+      - '**/*.sol'
+  pull_request:
+    paths:
+      - '**/*.sol'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  statuses: write
+  security-events: write
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run Slither
+        uses: crytic/slither-action@v0.4.1
+        id: slither
+        with:
+          sarif: results.sarif
+          fail-on: medium
+
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: ${{ steps.slither.outputs.sarif }}
